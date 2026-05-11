@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'fee', 'difficulty_level'];
+    protected $fillable = ['name', 'description', 'fee', 'difficulty_level', 'category', 'image_path'];
 }

@@ -18,6 +18,7 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="border-b-2 border-gray-200 bg-gray-50">
+                                <th class="p-3 font-semibold text-gray-600 w-16">Profile</th>
                                 <th class="p-3 font-semibold text-gray-600">Full Name</th>
                                 <th class="p-3 font-semibold text-gray-600">Specialization</th>
                                 <th class="p-3 font-semibold text-gray-600">Daily Rate (₱)</th>
@@ -27,6 +28,15 @@
                         <tbody>
                             @foreach($guides as $guide)
                             <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
+                                <td class="p-3">
+                                    @if($guide->image_path)
+                                        <img src="{{ asset('storage/' . $guide->image_path) }}" class="w-10 h-10 rounded-full object-cover border border-slate-200">
+                                    @else
+                                        <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                        </div>
+                                    @endif
+                                </td>
                                 <td class="p-3 font-medium text-gray-900">{{ $guide->name }}</td>
                                 <td class="p-3">
                                     <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">{{ $guide->specialization }}</span>

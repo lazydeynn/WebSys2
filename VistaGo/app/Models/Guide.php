@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Guide extends Model {
     use HasFactory;
     
-    protected $fillable = ['name', 'specialization', 'daily_rate'];
+    protected $fillable = ['name', 'specialization', 'daily_rate', 'image_path'];
 }

@@ -20,7 +20,20 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
-        Destination::create($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'fee' => 'required|numeric|min:0',
+            'difficulty_level' => 'required|string',
+            'category' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('destinations', 'public');
+        }
+
+        Destination::create($validated);
         return redirect()->route('destinations.index')->with('success', 'Destination added!');
     }
 
@@ -31,7 +44,20 @@ class DestinationController extends Controller
 
     public function update(Request $request, Destination $destination)
     {
-        $destination->update($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'fee' => 'required|numeric|min:0',
+            'difficulty_level' => 'required|string',
+            'category' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('destinations', 'public');
+        }
+
+        $destination->update($validated);
         return redirect()->route('destinations.index')->with('success', 'Destination updated!');
     }
 

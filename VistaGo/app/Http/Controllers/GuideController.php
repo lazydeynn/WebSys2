@@ -20,7 +20,18 @@ class GuideController extends Controller
 
     public function store(Request $request)
     {
-        Guide::create($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'specialization' => 'required|string',
+            'daily_rate' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('guides', 'public');
+        }
+
+        Guide::create($validated);
         return redirect()->route('guides.index')->with('success', 'Guide added!');
     }
 
@@ -31,7 +42,18 @@ class GuideController extends Controller
 
     public function update(Request $request, Guide $guide)
     {
-        $guide->update($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'specialization' => 'required|string',
+            'daily_rate' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('guides', 'public');
+        }
+
+        $guide->update($validated);
         return redirect()->route('guides.index')->with('success', 'Guide updated!');
     }
 

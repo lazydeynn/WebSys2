@@ -18,6 +18,7 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="border-b-2 border-gray-200 bg-gray-50">
+                                <th class="p-3 font-semibold text-gray-600 w-16">Image</th>
                                 <th class="p-3 font-semibold text-gray-600">Name</th>
                                 <th class="p-3 font-semibold text-gray-600">Fee (₱)</th>
                                 <th class="p-3 font-semibold text-gray-600">Difficulty</th>
@@ -27,6 +28,15 @@
                         <tbody>
                             @foreach($destinations as $destination)
                             <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
+                                <td class="p-3">
+                                    @if($destination->image_path)
+                                        <img src="{{ asset('storage/' . $destination->image_path) }}" class="w-12 h-10 rounded-lg object-cover border border-slate-200">
+                                    @else
+                                        <div class="w-12 h-10 bg-slate-200 rounded-lg flex items-center justify-center text-slate-400">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        </div>
+                                    @endif
+                                </td>
                                 <td class="p-3">{{ $destination->name }}</td>
                                 <td class="p-3">₱{{ $destination->fee }}</td>
                                 <td class="p-3">

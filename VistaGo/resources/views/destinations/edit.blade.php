@@ -30,6 +30,15 @@
                                 <label class="block text-sm font-medium text-gray-700">Difficulty Level</label>
                                 <input type="text" name="difficulty_level" value="{{ $destination->difficulty_level }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                             </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <label class="block text-sm font-medium text-gray-700">Category</label>
+                                <select name="category" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                    <option value="Nature" {{ $destination->category == 'Nature' ? 'selected' : '' }}>Nature</option>
+                                    <option value="Historical" {{ $destination->category == 'Historical' ? 'selected' : '' }}>Historical</option>
+                                    <option value="Adventure" {{ $destination->category == 'Adventure' ? 'selected' : '' }}>Adventure</option>
+                                    <option value="Cultural" {{ $destination->category == 'Cultural' ? 'selected' : '' }}>Cultural</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="flex items-center justify-end gap-4 mt-6 border-t border-gray-100 pt-4">

@@ -7,7 +7,7 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('guides.update', $guide) }}" method="POST" class="space-y-4">
+                    <form action="{{ route('guides.update', $guide) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                         @csrf
                         @method('PUT')
                         
@@ -25,6 +25,11 @@
                                 <label class="block text-sm font-medium text-gray-700">Daily Rate (₱)</label>
                                 <input type="number" step="0.01" name="daily_rate" value="{{ $guide->daily_rate }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                             </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Guide Profile Picture</label>
+                            <input type="file" name="image" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                         </div>
 
                         <div class="flex items-center justify-end gap-4 mt-6 border-t border-gray-100 pt-4">
